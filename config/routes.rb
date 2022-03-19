@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_skills
-  resources :skills
+  get "skills/edit", to: "skills#edit"
+  post "user_skills", to: "user_skills#create"
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

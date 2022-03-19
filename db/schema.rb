@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_19_083702) do
+ActiveRecord::Schema.define(version: 2022_03_19_125232) do
 
   create_table "outputs", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_083702) do
     t.string "title", default: "", null: false
     t.text "text", default: "", null: false
     t.float "time", null: false
-    t.integer "self_assessment_score", limit: 1, null: false
+    t.float "self_assessment_score", limit: 1, null: false
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

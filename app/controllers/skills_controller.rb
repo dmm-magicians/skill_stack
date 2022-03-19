@@ -12,6 +12,7 @@ class SkillsController < ApplicationController
     #   @skills.push(@skill)
     # end
     @skills = current_user.skills
+    @user_skill = UserSkill.new
   end
 
   private

@@ -1,5 +1,26 @@
 class OutputsController < ApplicationController
   before_action :set_output, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
+  def dashboard
+    gon.xLabel = ['Ruby', 'PHP', 'AWS', 'Azure', 'GCP', 'Rails']
+    gon.titleLabel = '投稿数'
+    gon.data = [120, 19, 3, 50, 2, 3]
+    
+    # 投稿数棒グラフ
+    gon.outputBarChartTitleLabel = '投稿数'
+    
+    # 文字数棒グラフ
+    gon.wordCountBarChartTitleLabel = '投稿文字数'
+    
+    # 時間グラフ
+    gon.timeBarChartTitleLabel = '学習時間'
+    
+    # 自己評価平均棒グラフ
+    gon.selfAssessmentAverageBarChartTitleLabel = '自己評価平均'
+    
+    
+  end
 
   # GET /outputs or /outputs.json
   def index

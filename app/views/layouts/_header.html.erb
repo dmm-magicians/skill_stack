@@ -9,7 +9,11 @@
         <ul class="navbar-nav ml-auto">
           <!-- TODO:各ページが完成次第、link_toに置き換えること-->
           <li class="nav-item"><a class="nav-link"href="#">投稿一覧</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">新規投稿</a></li>
+          <li class="nav-item">
+            <%= link_to new_output_path, method: :get, class:"nav-link" do %>
+              新規投稿
+            <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to skills_edit_path, method: :get, class:"nav-link" do %>
               スキル登録

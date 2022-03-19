@@ -13,3 +13,43 @@
  */
 
 @import "bootstrap";
+
+/* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "游ゴシック", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+  font-size: 1rem;
+  color: black;
+  background: white;
+  background-size: cover;
+  background-position: center;
+}
+
+// リンクテキストのカラー
+a {
+  color: black;
+}
+
+a:hover {
+  color: gray;
+  text-decoration: none;
+}
+
+// テキストを折り返す
+p,span {
+  word-break: break-all
+}
+
+// ヘッダーを固定しているため、高さ
+body{
+  margin-top:96px;
+}

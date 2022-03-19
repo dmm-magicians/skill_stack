@@ -3,23 +3,89 @@ class OutputsController < ApplicationController
   before_action :authenticate_user!
 
   def dashboard
-    gon.xLabel = ['Ruby', 'PHP', 'AWS', 'Azure', 'GCP', 'Rails']
-    gon.titleLabel = '投稿数'
-    gon.data = [120, 19, 3, 50, 2, 3]
-    
+    # 累計学習日数
+    @sumOfStudyDays = Output
+      .where(user_id: current_user.id)
+      .count('DISTINCT date')
+      
+    # スキルごとの投稿数
+    gon.outputDoughnutChartTitleLabel = '学習スキル'
+    outputsForOutputDoughnutChart = Output.all.left_joins(:skill)
+      .group('outputs.skill_id')
+      .select('skills.name AS skill_name, count(outputs.skill_id) AS output_count')
+      .where(outputs: {user_id: current_user.id})
+      .order('output_count DESC')
+      .to_a
+    gon.outputDoughnutChartXLabel = []
+    gon.outputDoughnutChartData = []
+    outputsForOutputDoughnutChart.each { |output|
+      gon.outputDoughnutChartXLabel.push(output['skill_name'])
+      gon.outputDoughnutChartData.push(output['output_count'])
+    }
+
     # 投稿数棒グラフ
     gon.outputBarChartTitleLabel = '投稿数'
-    
+    outputsForOutputBarChart = Output.all.left_joins(:skill)
+      .group('outputs.skill_id')
+      .select('skills.name AS skill_name, count(outputs.skill_id) AS output_count')
+      .where(outputs: {user_id: current_user.id})
+      .order('output_count DESC')
+      .to_a
+    gon.outputBarChartXLabel = []
+    gon.outputBarChartData = []
+    outputsForOutputBarChart.each { |output|
+      gon.outputBarChartXLabel.push(output['skill_name'])
+      gon.outputBarChartData.push(output['output_count'])
+    }
+
     # 文字数棒グラフ
-    gon.wordCountBarChartTitleLabel = '投稿文字数'
-    
+    gon.wordCountBarChartTitleLabel = '学習日数'
+    outputsForWordCountBarChart = Output.all.left_joins(:skill)
+      .group('outputs.skill_id')
+      .select('skills.name AS skill_name, count(DISTINCT outputs.date) AS output_count')
+      .where(outputs: {user_id: current_user.id})
+      .order('output_count DESC')
+      .to_a
+
+    gon.wordCountBarChartXLabel = []
+    gon.wordCountBarChartData = []
+    outputsForWordCountBarChart.each { |output|
+      gon.wordCountBarChartXLabel.push(output['skill_name'])
+      gon.wordCountBarChartData.push(output['output_count'])
+    }
+
     # 時間グラフ
     gon.timeBarChartTitleLabel = '学習時間'
-    
+    outputsForTimeBarChart = Output.all.left_joins(:skill)
+      .group('outputs.skill_id')
+      .select('skills.name AS skill_name, sum(outputs.time) AS sum_time')
+      .where(outputs: {user_id: current_user.id})
+      .order('sum_time DESC')
+      .to_a
+
+    gon.timeBarChartXLabel = []
+    gon.timeBarChartData = []
+    outputsForTimeBarChart.each { |output|
+      gon.timeBarChartXLabel.push(output['skill_name'])
+      gon.timeBarChartData.push(output['sum_time'])
+    }
+
     # 自己評価平均棒グラフ
     gon.selfAssessmentAverageBarChartTitleLabel = '自己評価平均'
-    
-    
+    outputsForSelfAssessmentAverageBarChart = Output.all.left_joins(:skill)
+      .group('outputs.skill_id')
+      .select('skills.name AS skill_name, avg(outputs.self_assessment_score) AS self_assessment_score_average')
+      .where(outputs: {user_id: current_user.id})
+      .order('self_assessment_score_average DESC')
+      .to_a
+
+    gon.selfAssessmentAverageBarChartXLabel = []
+    gon.selfAssessmentAverageBarChartData = []
+    outputsForSelfAssessmentAverageBarChart.each { |output|
+      gon.selfAssessmentAverageBarChartXLabel.push(output['skill_name'])
+      gon.selfAssessmentAverageBarChartData.push(output['self_assessment_score_average'])
+    }
+
   end
 
   # GET /outputs or /outputs.json

@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Outputs</h1>
+<h1>投稿一覧</h1>
 <div class="container">
-  <div class="row">  
-    <table class="table">
+  <div class="row">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>タイトル</th>
@@ -15,15 +13,17 @@
       </thead>
       <tbody>
         <% @outputs.each do |output| %>
-        <%  @skills.each do |skill| %>
           <tr>
-            <td><%= output.title %></td>
-            <td><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Ruby</title><path d="<%= skill.image %>"/></svg></td>
-            <td><%= output.time %><p>時間</p></td>
             <td>
-              <span id='view-star' class="col-4 control-label"></span>
+              <%= link_to output_path(output.id) do %>
+              <%= output.title %>
+              <% end %>
+            </td>
+            <td><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Ruby</title><path d="<%= output.skill.image %>"/></svg></td>
+            <td>
+              <span id='view-star-<%= output.id %>'></span>
                 <script>
-                $('#view-star').raty({
+                $('#view-star-<%= output.id %>').raty({
                   readOnly: true,
                   size     : 36,
                   starOff:  '<%= asset_path('star-off.png') %>',
@@ -32,14 +32,12 @@
                 });
               </script>
             </td>
+            <td><%= output.time.round(1) %>時間</td>
             <td><%= output.date %></td>
           </tr>
-        <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
 <br>
-
-<%= link_to 'New Output', new_output_path %>

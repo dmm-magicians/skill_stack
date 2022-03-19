@@ -89,7 +89,7 @@ class OutputsController < ApplicationController
 
   # GET /outputs or /outputs.json
   def index
-    @outputs = Output.all
+    @outputs = Output.order(date: "DESC").all
     @skills = current_user.skills
   end
 

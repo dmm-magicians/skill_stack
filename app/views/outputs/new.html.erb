@@ -1,5 +1,35 @@
-<h1>New Output</h1>
-
-<%= render 'form', output: @output %>
-
-<%= link_to 'Back', outputs_path %>
+<link href="css/select2.css" rel="stylesheet">
+<script src="js/select2.min.js"></script>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto"><h1>新規投稿</h1></div>
+  </div>
+  <%= form_with model: @outputs, method: :post, local: true do |f| %>
+    <div class="row">
+      <div class="col-3"><h3>タイトル</h3></div>
+      <div class="col-9"><%= f.text_field :title %></div>
+    </div>
+    <div class="row">
+      <div class="col-3"><h3>スキル</h3></div>
+      <!--スキルセレクトボックス仮置-->
+      <div class="col-9">
+        <select class="select">
+          <option value="cat1">Ruby</option>
+          <option value="cat2">Rails</option>
+          <option value="cat3">Arduino</option>
+          <option value="cat4">Python</option>
+          <option value="cat5">Java</option>
+          <option value="cat6">AWS</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"><h3>本文</h3></div>
+      <div class="col-9"><%= f.text_area :text %></div>
+    </div>
+    <div class="row">
+      <div class="col-3">時間</div>
+      <div class="col-9"><%= t.text_field :time%></div>
+    </div>
+  <% end %>
+</div>

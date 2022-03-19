@@ -48,14 +48,14 @@ class OutputsController < ApplicationController
   end
 
   # DELETE /outputs/1 or /outputs/1.json
-  def destroy
-    @output.destroy
+  # def destroy
+  #   @output.destroy
 
-    respond_to do |format|
-      format.html { redirect_to outputs_url, notice: "Output was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to outputs_url, notice: "Output was successfully destroyed." }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,46 +1,55 @@
 <div class="container">
-  <div class="row">
-    <div class="mx-auto"><h1>新規投稿</h1></div>
+  <div class="row py-5">
+    <div class="mx-auto"><h1>新規登録</h1></div>
   </div>
   <%= form_with model: @output,url: outputs_path, method: :post, local: true do |f| %>
-    <div class="row">
-      <div class="col-3"><h3>タイトル</h3></div>
-      <div class="col-9"><%= f.text_field :title %></div>
-    </div>
-    <div class="row">
-      <div class="col-3"><h3>スキル</h3></div>
-      <!--スキルセレクトボックス仮置-->
-      <div class="col-9">
-       <%= f.collection_select :skill_id, @skills, :id, :name, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "タイトル", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.text_field :title, class: "form-control" %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-3"><h3>本文</h3></div>
-      <div class="col-9"><%= f.text_area :text %></div>
-    </div>
-    <div class="row">
-      <div class="col-3"><h3>時間</h3></div>
-      <div class="col-9"><%= f.text_field :time%></div>
-    </div>
-      <!--星評価-->
-      <div class="form-group row" id="star">
-        <%= f.label :self_assessment_score,'評価 ' %>
-        <%= f.hidden_field :self_assessment_score, id: :star %>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "スキル", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.select :skill_id, @skills, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
       </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "本文", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.text_area :text, rows: 5, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "時間", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.text_field :time, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label :self_assessment_score,"自己評価", class: "col-2 control-label" %>
+      <div id="star" class="col-4 control-label">
+      </div>
+    </div>
 
-      <script>
-        $('#star').raty({
-          size     : 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          scoreName: 'output[self_assessment_score]'
-        });
-      </script>
+    <script>
+      $('#star').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        scoreName: 'output[self_assessment_score]'
+      });
+    </script>
 
-    <div class="row">
-      <div class="col-6"><%= f.submit "キャンセル", class: "btn btn-secondary btn-lg" %></div>
-      <div class="col-6"><%= f.submit "投稿", class: "btn btn-success btn-lg" %></div>
+    <div class="row justify-content-center my-5">
+      <div class="col-3 text-center">
+        <%= link_to root_path, method: :get, class:"btn btn-secondary btn-lg" do %>
+          キャンセル
+        <% end %>
+      </div>
+      <div class="col-3 text-center"><%= f.submit "投稿", class: "btn btn-success btn-lg" %></div>
     </div>
   <% end %>
-
+  
 </div>

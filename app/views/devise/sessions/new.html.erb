@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="card col-sm-5 mx-auto mt-5">
-      <div class="card-body">
-        <h3 class="mt-1 mb-3">ログイン</h3>
-        <%= link_to "かんたんログイン", simple_login_path, method: :post, class: "btn btn-success" %>
+      <div class="card-body justify-content-center">
+        <%= image_tag "logo_transparent.png", :size => '120x120', class: "logo d-block mx-auto" %>
+        <h3 class="mt-1 mb-3 text-center">ログイン</h3>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-group">
             <%= f.label :email, "メールアドレス", class: "form-label" %>
@@ -23,6 +23,9 @@
 
           <div class="actions">
             <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+          </div>
+          <div class="text-center my-4">
+            <%= link_to "かんたんログイン", simple_login_path, method: :post, class: "btn btn-success btn-block" %>
           </div>
         <% end %>
 

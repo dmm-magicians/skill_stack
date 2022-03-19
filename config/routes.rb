@@ -8,8 +8,11 @@ Rails.application.routes.draw do
     passwords:     "users/passwords",
     registrations: "users/registrations"
   }
-  # simple Login
-  post "simple_login", to: "users#user_simple_login"
+  devise_scope :user do
+    # simple Login
+    post "simple_login", to: "users/sessions#user_simple_login"
+  end
+
 
   resources :outputs, except: [:destroy] do
     # ダッシュボード画面

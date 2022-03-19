@@ -11,8 +11,10 @@ class User < ApplicationRecord
 
   # ゲストユーザーの作成
   def self.guest
-    find_or_create_by!(email: "test@test.com", name: "ゲストユーザー") do |user|
+    find_or_create_by!(email: "test1@test.com") do |user|
+      user.name = "ゲストユーザー"
       user.password = SecureRandom.urlsafe_base64
+      user.is_delete = false
     end
   end
 end

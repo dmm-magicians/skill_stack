@@ -102,7 +102,7 @@ class OutputsController < ApplicationController
   # GET /outputs/new
   def new
     @output = Output.new
-    @skills = current_user.skills
+    @skills = current_user.skills.select(:id, :name)
   end
 
   # GET /outputs/1/edit
@@ -112,14 +112,13 @@ class OutputsController < ApplicationController
   # POST /outputs or /outputs.json
   def create
     @output = Output.new(output_params)
-    respond_to do |format|
-      if @output.save
-        format.html { redirect_to output_url(@output), notice: "Output was successfully created." }
-        format.json { render :show, status: :created, location: @output }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @output.errors, status: :unprocessable_entity }
-      end
+    @output.user_id = current_user.id
+    @output.date = Date.today
+    if @output.save
+      flash[:notice] = "投稿しました！今日も学習お疲れ様でした！！"
+      redirect_to output_path(@output)
+    else
+      render :new
     end
   end
 
@@ -154,6 +153,6 @@ class OutputsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def output_params
-      params.require(:output).permit(:user_id, :skill_id, :title, :text, :time, :self_assessment_score, :date)
+      params.require(:output).permit(:skill_id, :title, :text, :time, :self_assessment_score)
     end
 end

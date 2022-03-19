@@ -12,7 +12,7 @@
     <div class="row form-group justify-content-center d-flex align-items-center my-3">
       <%= f.label "スキル", class: "col-2 control-label" %>
       <div class="col-4 control-label">
-        <%= f.select :skill_id, @skills, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
+        <%= f.collection_select :skill_id, @skills, :id, :name, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
       </div>
     </div>
     <div class="row form-group justify-content-center d-flex align-items-center my-3">

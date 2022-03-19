@@ -22,7 +22,6 @@ class OutputsController < ApplicationController
   # POST /outputs or /outputs.json
   def create
     @output = Output.new(output_params)
-
     respond_to do |format|
       if @output.save
         format.html { redirect_to output_url(@output), notice: "Output was successfully created." }

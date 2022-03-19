@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_19_021224) do
+ActiveRecord::Schema.define(version: 2022_03_19_083702) do
 
   create_table "outputs", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_021224) do
     t.integer "skill_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "skill_id"], name: "index_user_skills_on_user_id_and_skill_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

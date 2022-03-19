@@ -1,5 +1,55 @@
-<h1>New Output</h1>
+<div class="container">
+  <div class="row py-5">
+    <div class="mx-auto"><h1>新規登録</h1></div>
+  </div>
+  <%= form_with model: @output,url: outputs_path, method: :post, local: true do |f| %>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "タイトル", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "スキル", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.select :skill_id, @skills, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
+      </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "本文", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.text_area :text, rows: 5, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label "時間", class: "col-2 control-label" %>
+      <div class="col-4 control-label">
+        <%= f.text_field :time, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row form-group justify-content-center d-flex align-items-center my-3">
+      <%= f.label :self_assessment_score,"自己評価", class: "col-2 control-label" %>
+      <div id="star" class="col-4 control-label">
+      </div>
+    </div>
 
-<%= render 'form', output: @output %>
+    <script>
+      $('#star').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        scoreName: 'output[self_assessment_score]'
+      });
+    </script>
 
-<%= link_to 'Back', outputs_path %>
+    <div class="row justify-content-center my-5">
+      <div class="col-3 text-center">
+        <%= link_to root_path, method: :get, class:"btn btn-secondary btn-lg" do %>
+          キャンセル
+        <% end %>
+      </div>
+      <div class="col-3 text-center"><%= f.submit "投稿", class: "btn btn-success btn-lg" %></div>
+    </div>
+  <% end %>
+  
+</div>

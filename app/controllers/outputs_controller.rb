@@ -90,6 +90,7 @@ class OutputsController < ApplicationController
   # GET /outputs or /outputs.json
   def index
     @outputs = Output.all
+    @skills = current_user.skills
   end
 
   # GET /outputs/1 or /outputs/1.json

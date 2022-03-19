@@ -35,7 +35,6 @@ class OutputsController < ApplicationController
   def new
     @output = Output.new
     @skills = current_user.skills
-    binding.irb
   end
 
   # GET /outputs/1/edit

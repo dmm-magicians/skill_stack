@@ -3,22 +3,24 @@
 # You can use CoffeeScript in this file: http:#coffeescript.org/
 window.draw_graph = ->
 
-  doughnutChart1 = document.getElementById('doughnutChart1');
-  colorNum = gon.outputDoughnutChartTitleLabel.length
-  bgColors = new Array(colorNum)
-  for i in [0...colorNum]
-    bgColors[i] = 'rgb(' + ~ ~(256 * Math.random()) + ', ' + ~ ~(256 * Math.random()) + ', ' + ~ ~(256 * Math.random()) + ')'
-  console.log(bgColors)
-  myChart = new Chart(doughnutChart1, {
-    type: 'doughnut',
+  lineChart1 = document.getElementById('lineChart1');
+  myChart = new Chart(lineChart1, {
+    type: 'line',
     data: {
-      labels: gon.outputDoughnutChartXLabel,
+      labels: gon.outputLineChartXLabel,
       datasets: [{
-        label: gon.outputDoughnutChartTitleLabel,
-        data: gon.outputDoughnutChartData,
+        label: gon.outputLineChartTitleLabel,
+        data: gon.outputLineChartData,
+        backgroundColor: 'rgb(75, 192, 192)',
       }],
-      backgroundColor: ['rgb(69, 219, 186)', 'rgb(60, 55, 202)', 'rgb(233, 36, 135)', 'rgb(116, 162, 28)', 'rgb(79, 193, 168)'],
     },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
   });
 
   barChart1 = document.getElementById('barChart1');

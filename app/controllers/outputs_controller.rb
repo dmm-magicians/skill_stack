@@ -7,20 +7,19 @@ class OutputsController < ApplicationController
     @sumOfStudyDays = Output
       .where(user_id: current_user.id)
       .count('DISTINCT date')
-      
+
     # スキルごとの投稿数
-    gon.outputDoughnutChartTitleLabel = '学習スキル'
-    outputsForOutputDoughnutChart = Output.all.left_joins(:skill)
-      .group('outputs.skill_id')
-      .select('skills.name AS skill_name, count(outputs.skill_id) AS output_count')
+    gon.outputLineChartTitleLabel = '月ごとの投稿数'
+    outputsForOutputLineChart = Output.all.left_joins(:skill)
+      .group("output_date")
+      .select("strftime('%Y-%m',outputs.date) AS output_date, count(outputs.skill_id) AS output_count")
       .where(outputs: {user_id: current_user.id})
-      .order('output_count DESC')
       .to_a
-    gon.outputDoughnutChartXLabel = []
-    gon.outputDoughnutChartData = []
-    outputsForOutputDoughnutChart.each { |output|
-      gon.outputDoughnutChartXLabel.push(output['skill_name'])
-      gon.outputDoughnutChartData.push(output['output_count'])
+    gon.outputLineChartXLabel = []
+    gon.outputLineChartData = []
+    outputsForOutputLineChart.each { |output|
+      gon.outputLineChartXLabel.push(output['output_date'])
+      gon.outputLineChartData.push(output['output_count'])
     }
 
     # 投稿数棒グラフ
@@ -55,7 +54,7 @@ class OutputsController < ApplicationController
     }
 
     # 時間グラフ
-    gon.timeBarChartTitleLabel = '学習時間'
+    gon.timeBarChartTitleLabel = '学習時間(時間)'
     outputsForTimeBarChart = Output.all.left_joins(:skill)
       .group('outputs.skill_id')
       .select('skills.name AS skill_name, sum(outputs.time) AS sum_time')

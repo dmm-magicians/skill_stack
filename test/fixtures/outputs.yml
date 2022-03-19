@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  int: 
+  int: 
+  string: 
+  text: MyText
+  float: 2022-03-19 01:32:17
+  tinyint: 
+  date: 2022-03-19
+
+two:
+  int: 
+  int: 
+  string: 
+  text: MyText
+  float: 2022-03-19 01:32:17
+  tinyint: 
+  date: 2022-03-19

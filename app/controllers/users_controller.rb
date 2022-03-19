@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /users or /users.json
   def index
@@ -55,6 +56,12 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def user_simple_login
+  	user = User.guest
+    sign_in user
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   private

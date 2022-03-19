@@ -12,7 +12,6 @@
 
           <div class="form-group">
             <%= f.label :password, "パスワード", class: "form-label" %>
-            <%#= link_to "パスワードを忘れた場合", new_user_password_path, class: "float-right" %>
             <%= f.password_field :password, class: "form-control" %>
             <% if devise_mapping.rememberable? %>
               <div class="form-check">

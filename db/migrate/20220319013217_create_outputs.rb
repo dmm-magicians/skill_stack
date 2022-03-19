@@ -7,7 +7,7 @@ class CreateOutputs < ActiveRecord::Migration[5.2]
       t.text :text, null: false
       t.float :time, null: false, default: ""
       t.integer :self_assessment_score, limit: 1, null: false, default: ""
-      t.date :date, null: false, default: ""
+      t.date :date, null: false
 
       t.timestamps
     end

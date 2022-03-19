@@ -11,7 +11,11 @@
           <li class="nav-item"><a class="nav-link"href="#">投稿一覧</a></li>
           <li class="nav-item"><a class="nav-link" href="#">新規投稿</a></li>
           <li class="nav-item"><a class="nav-link" href="#">スキル登録</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">ユーザー設定</a></li>
+          <li class="nav-item">
+            <%= link_to edit_user_path(current_user), method: :get, class:"nav-link" do %>
+              ユーザー設定
+            <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to destroy_user_session_path, method: :delete, class:"nav-link" do %>
               ログアウト

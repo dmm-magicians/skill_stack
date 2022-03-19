@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(current_user.id)
   end
 
   # POST /users or /users.json
@@ -46,6 +47,8 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
+    current_user.update_with_password(user_params)
   end
 
   # DELETE /users/1 or /users/1.json
@@ -70,8 +73,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:string, :string, :string, :boolean)
+  	  params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

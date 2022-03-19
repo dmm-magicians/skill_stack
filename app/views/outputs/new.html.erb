@@ -1,10 +1,8 @@
-<link href="css/select2.css" rel="stylesheet">
-<script src="js/select2.min.js"></script>
 <div class="container">
   <div class="row">
     <div class="mx-auto"><h1>新規投稿</h1></div>
   </div>
-  <%= form_with model: @outputs, method: :post, local: true do |f| %>
+  <%= form_with model: @output,url: outputs_path, method: :post, local: true do |f| %>
     <div class="row">
       <div class="col-3"><h3>タイトル</h3></div>
       <div class="col-9"><%= f.text_field :title %></div>
@@ -13,14 +11,7 @@
       <div class="col-3"><h3>スキル</h3></div>
       <!--スキルセレクトボックス仮置-->
       <div class="col-9">
-        <select class="select">
-          <option value="cat1">Ruby</option>
-          <option value="cat2">Rails</option>
-          <option value="cat3">Arduino</option>
-          <option value="cat4">Python</option>
-          <option value="cat5">Java</option>
-          <option value="cat6">AWS</option>
-        </select>
+       <%= f.collection_select :skill_id, @skills, :id, :name, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
       </div>
     </div>
     <div class="row">
@@ -28,8 +19,28 @@
       <div class="col-9"><%= f.text_area :text %></div>
     </div>
     <div class="row">
-      <div class="col-3">時間</div>
-      <div class="col-9"><%= t.text_field :time%></div>
+      <div class="col-3"><h3>時間</h3></div>
+      <div class="col-9"><%= f.text_field :time%></div>
+    </div>
+      <!--星評価-->
+      <div class="form-group row" id="star">
+        <%= f.label :self_assessment_score,'評価 ' %>
+        <%= f.hidden_field :self_assessment_score, id: :star %>
+      </div>
+
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          scoreName: 'output[self_assessment_score]'
+        });
+      </script>
+
+    <div class="row">
+      <div class="col-6"><%= f.submit "キャンセル", class: "btn btn-secondary btn-lg" %></div>
+      <div class="col-6"><%= f.submit "投稿", class: "btn btn-success btn-lg" %></div>
     </div>
   <% end %>
+
 </div>

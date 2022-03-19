@@ -68,11 +68,11 @@ end
     text: "PHP学習#{n + 1}日目頑張りました！！明日も頑張ります！",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "March #{n + 1}, 2022"
+    date: "April #{n + 1}, 2022"
   )
 end
 
-20.times do |n|
+22.times do |n|
   Output.create!(
     user_id: 1,
     skill_id: 6,
@@ -80,11 +80,11 @@ end
     text: "AWS学習#{n + 1}日目頑張りました！！インフラの勉強楽しい！明日も頑張ります！",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "March #{n + 5}, 2022"
+    date: "May #{n + 5}, 2022"
   )
 end
 
-10.times do |n|
+13.times do |n|
   Output.create!(
     user_id: 1,
     skill_id: 9,
@@ -92,6 +92,6 @@ end
     text: "Laravel学習#{n + 1}日目もう疲れました。",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "March #{n + 3}, 2022"
+    date: "June #{n + 3}, 2022"
   )
 end

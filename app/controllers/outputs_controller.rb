@@ -102,11 +102,13 @@ class OutputsController < ApplicationController
   # GET /outputs/new
   def new
     @output = Output.new
-    @skills = current_user.skills.select(:id, :name)
+    @skills = current_user.skills
   end
 
   # GET /outputs/1/edit
   def edit
+    @output = Output.find(params[:id])
+    @skills = current_user.skills
   end
 
   # POST /outputs or /outputs.json
@@ -124,14 +126,11 @@ class OutputsController < ApplicationController
 
   # PATCH/PUT /outputs/1 or /outputs/1.json
   def update
-    respond_to do |format|
-      if @output.update(output_params)
-        format.html { redirect_to output_url(@output), notice: "Output was successfully updated." }
-        format.json { render :show, status: :ok, location: @output }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @output.errors, status: :unprocessable_entity }
-      end
+    if @output.update(output_params)
+      flash[:notice] = "投稿を更新しました！"
+      redirect_to output_path(@output)
+    else
+      render :edit
     end
   end
 

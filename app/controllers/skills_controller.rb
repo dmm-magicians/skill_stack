@@ -11,7 +11,7 @@ class SkillsController < ApplicationController
     #   @skill = Skill.find(@user_skill.skill_id)
     #   @skills.push(@skill)
     # end
-    @skills = current_user.skills
+    @skills = current_user.skills.select(:name, :image)
     @user_skill = UserSkill.new
   end
 

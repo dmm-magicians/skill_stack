@@ -95,6 +95,8 @@ class OutputsController < ApplicationController
 
   # GET /outputs/1 or /outputs/1.json
   def show
+    @output = Output.find(params[:id])
+    @skill = @output.skill
   end
 
   # GET /outputs/new

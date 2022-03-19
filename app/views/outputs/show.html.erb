@@ -1,39 +1,44 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Int:</strong>
-  <%= @output.int %>
-</p>
-
-<p>
-  <strong>Int:</strong>
-  <%= @output.int %>
-</p>
-
-<p>
-  <strong>String:</strong>
-  <%= @output.string %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @output.text %>
-</p>
-
-<p>
-  <strong>Float:</strong>
-  <%= @output.float %>
-</p>
-
-<p>
-  <strong>Tinyint:</strong>
-  <%= @output.tinyint %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @output.date %>
-</p>
-
-<%= link_to 'Edit', edit_output_path(@output) %> |
-<%= link_to 'Back', outputs_path %>
+<div class="container">
+  <div class="row py-5">
+    <div class="mx-auto"><h1><%= @output.title %></h1></div>
+  </div>
+  <div class="row mb-4">
+    <div class="offset-10 col-2">
+      <%= link_to edit_output_path, method: :get, class:"col-10 nav-btn btn btn-outline-dark" do %>
+        編集
+      <% end %>
+    </div>
+  </div>
+  <div class="row form-group justify-content-center mt-3">
+    <p class="col-2 control-label">スキル</p>
+    <span class="col-4 control-label">
+      <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ><title><%= @skill.name %></title><path d="<%= @skill.image %>"/></svg>
+    </span>
+  </div>
+  <div class="row form-group justify-content-center mt-3">
+    <p class="col-2 control-label">本文</p>
+    <span class="col-4 control-label">
+      <%= @output.text %>
+    </span>
+  </div>
+  <div class="row form-group justify-content-center mt-3">
+    <p class="col-2 control-label">時間</p>
+    <span class="col-4 control-label">
+      <%= @output.time.round(1) %>
+    </span>
+  </div>
+  <div class="row form-group justify-content-center mt-3">
+    <p class="col-2 control-label">自己評価</p>
+    <span id='view-star' class="col-4 control-label">
+    </span>
+  </div>
+  <script>
+    $('#view-star').raty({
+      readOnly: true,
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      score: <%= @output.self_assessment_score %>,
+    });
+  </script>
+</div>

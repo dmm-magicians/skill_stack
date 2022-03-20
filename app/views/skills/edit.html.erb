@@ -3,7 +3,7 @@
     <div class="mx-auto"><h1 class="">興味のあるスキル</h1></div>
   </div>
   <div class="row">
-    <% @skills.each do |skill| %>
+    <% @user_skills.each do |skill| %>
       <div class="col-2 py-2">
 
         <div class="d-flex align-items-center justify-content-center">
@@ -17,12 +17,12 @@
     <% end %>
   </div>
   <div class="row d-flex align-items-center justify-content-center py-3">
-    <%= form_with model: @user_skill,url: user_skills_path, method: :post, local: true do |f| %>
+    <%= form_with model: @new_user_skill,url: user_skills_path, method: :post, local: true do |f| %>
 
       <div class="row py-4">
         <!--スキルセレクトボックス仮置-->
         <div class="col-9 d-flex align-items-center justify-content-center">
-         <%= f.collection_select :skill_id, @skills, :id, :name, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
+         <%= f.collection_select :skill_id, @all_skills, :id, :name, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
         </div>
 
         <%= f.hidden_field :user_id, :value => current_user.id %>

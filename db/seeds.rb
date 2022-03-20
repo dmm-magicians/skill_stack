@@ -38,7 +38,7 @@ end
 end
 
 # ユーザースキルの作成
-10.times do |n|
+8.times do |n|
   UserSkill.create!(
     user_id: 1,
     skill_id: (n + 1),

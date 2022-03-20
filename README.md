@@ -97,7 +97,6 @@ achievements(時間が余ったら)
 
 ```mermaid
   erDiagram
-    users ||--o{ user_logins : login
     users ||--o{ user_skills : set
     skills ||--o{ user_skills : set
     users ||--o{ outputs : output
@@ -120,11 +119,6 @@ achievements(時間が余ったら)
       int id
       int user_id
       int skill_id
-    }
-
-    user_logins {
-      int id
-      int user_id
     }
 
     outputs {

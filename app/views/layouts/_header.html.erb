@@ -5,6 +5,7 @@
       <%= link_to root_path, data: {"turbolinks" => false} do %>
         <%= image_tag "logo_transparent.png", :size => '80x80', class: "logo" %>
       <% end %>
+      <span class="mr-auto pl-3">今日も学習内容をアウトプットしていこう、<%= current_user.name %>さん！</span>
       <div class="inline">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">

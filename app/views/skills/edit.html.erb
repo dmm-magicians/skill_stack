@@ -4,12 +4,12 @@
   </div>
   <div class="row">
     <% @skills.each do |skill| %>
-      <div class="col-2">
-        
+      <div class="col-2 py-2">
+
         <div class="d-flex align-items-center justify-content-center">
           <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Ruby</title><path d="<%= skill.image %>"/></svg>
         </div>
-        
+
         <div class="d-flex align-items-center justify-content-center">
           <%= skill.name %>
         </div>
@@ -19,7 +19,7 @@
   <div class="row d-flex align-items-center justify-content-center py-3">
     <%= form_with model: @user_skill,url: user_skills_path, method: :post, local: true do |f| %>
 
-      <div class="row">
+      <div class="row py-4">
         <!--スキルセレクトボックス仮置-->
         <div class="col-9 d-flex align-items-center justify-content-center">
          <%= f.collection_select :skill_id, @skills, :id, :name, { prompt: "-- 選択してください --" }, { class: "form-control" } %>
@@ -27,7 +27,7 @@
 
         <%= f.hidden_field :user_id, :value => current_user.id %>
 
-        <div class="col-3"><%= f.submit "追加", class: "btn btn-success btn-lg" %></div>
+        <div class="col-3"><%= f.submit "追加", class: "btn btn-success" %></div>
       </div>
     <% end %>
   </div>

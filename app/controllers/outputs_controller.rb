@@ -12,7 +12,7 @@ class OutputsController < ApplicationController
     gon.outputLineChartTitleLabel = '月ごとの投稿数'
     outputsForOutputLineChart = Output.all.left_joins(:skill)
       .group("output_date")
-      .select("strftime('%Y-%m',outputs.date) AS output_date, count(outputs.skill_id) AS output_count")
+      .select("DATE_FORMAT(outputs.date, '%Y-%m') AS output_date, count(outputs.skill_id) AS output_count")
       .where(outputs: {user_id: current_user.id})
       .to_a
     gon.outputLineChartXLabel = []

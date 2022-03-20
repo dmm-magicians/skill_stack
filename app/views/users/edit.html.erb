@@ -6,22 +6,22 @@
   
         <div class="form-group row">
           <%= f.label :name, "ユーザー名", class: "form-label col-5" %>
-          <%= f.text_field :name, autofocus: true, autocomplete: "email", class: "form-control col-7" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "email", :required => true, :pattern => ".*", class: "form-control col-7" %>
         </div>
   
         <div class="form-group row">
           <%= f.label :email, "メールアドレス", class: "form-label col-5" %>
-          <%= f.email_field :email, autocomplete: "email", class: "form-control col-7" %>
+          <%= f.email_field :email, autocomplete: "email", :required => true, :pattern => ".*", class: "form-control col-7" %>
         </div>
   
         <div class="form-group row">
           <%= f.label :password, "パスワード", class: "form-label col-5" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-7" %>
+          <%= f.password_field :password, autocomplete: "new-password", :required => true, :pattern => ".*", class: "form-control col-7" %>
         </div>
   
         <div class="form-group row">
           <%= f.label :password_confirmation, "パスワード確認", class: "form-label col-5" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-7" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, :pattern => ".*", class: "form-control col-7" %>
         </div>
   
         <div class="actions row">

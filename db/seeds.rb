@@ -56,7 +56,7 @@ end
     text: "Ruby学習#{n + 1}日目頑張りました！！明日も頑張ります！",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "March #{n + 1}, 2022"
+    date: "November #{n + 1}, 2021"
   )
 end
 
@@ -68,7 +68,7 @@ end
     text: "PHP学習#{n + 1}日目頑張りました！！明日も頑張ります！",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "April #{n + 1}, 2022"
+    date: "December #{n + 1}, 2021"
   )
 end
 
@@ -80,7 +80,7 @@ end
     text: "AWS学習#{n + 1}日目頑張りました！！インフラの勉強楽しい！明日も頑張ります！",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "May #{n + 5}, 2022"
+    date: "January #{n + 5}, 2022"
   )
 end
 
@@ -92,6 +92,6 @@ end
     text: "Laravel学習#{n + 1}日目もう疲れました。",
     time: rand(0.5..8),
     self_assessment_score: rand(1..5),
-    date: "June #{n + 3}, 2022"
+    date: "February #{n + 3}, 2022"
   )
 end

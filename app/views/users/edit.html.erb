@@ -3,25 +3,24 @@
     <div class="card-body py-5">
       <h1 class="text-center py-3">ユーザー設定</h1>
     	<%= form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
-
         <div class="form-group row justify-content-center d-flex align-items-center">
           <%= f.label :name, "ユーザー名", class: "form-label col-3" %>
-          <%= f.text_field :name, autofocus: true, autocomplete: "email", class: "form-control col-6" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "email", :required => true, :pattern => ".*", class: "form-control col-6" %>
         </div>
-
+  
         <div class="form-group row justify-content-center d-flex align-items-center">
           <%= f.label :email, "メールアドレス", class: "form-label col-3" %>
-          <%= f.email_field :email, autocomplete: "email", class: "form-control col-6" %>
+          <%= f.email_field :email, autocomplete: "email", :required => true, :pattern => ".*", class: "form-control col-6" %>
         </div>
-
+  
         <div class="form-group row justify-content-center d-flex align-items-center">
           <%= f.label :password, "パスワード", class: "form-label col-3" %>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-6" %>
+          <%= f.password_field :password, autocomplete: "new-password", :required => true, :pattern => ".*", class: "form-control col-6" %>
         </div>
-
+  
         <div class="form-group row justify-content-center d-flex align-items-center">
           <%= f.label :password_confirmation, "パスワード確認", class: "form-label col-3" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-6" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", :required => true, :pattern => ".*", class: "form-control col-6" %>
         </div>
 
         <div class="actions row">

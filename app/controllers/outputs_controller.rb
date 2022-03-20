@@ -120,6 +120,7 @@ class OutputsController < ApplicationController
       flash[:notice] = "投稿しました！今日も学習お疲れ様でした！！"
       redirect_to output_path(@output)
     else
+      flash[:alert]
       render :new
     end
   end
